@@ -1,27 +1,25 @@
-export interface Course {
+export interface CourseI {
     name: string,
-    description: string,
-    topics?: Topic[],
-    sections?: Section[]
+    topics?: TopicI[],
+    sections?: SectionI[]
 }
 
-export interface Topic {
+export interface TopicI {
     name: string,
-    sections: Section[]
+    sections: SectionI[]
 }
 
-export interface Section {
+export interface SectionI {
     type: 'md' | 'video'
 }
 
-export interface VideoSection extends Section {
+export interface VideoSectionI extends SectionI {
     type: 'video',
-    provider: 'lbry',
+    provider?: 'lbry',
     url: string
 }
 
-export interface MarkdownSection extends Section {
+export interface MarkdownSectionI extends SectionI {
     type: 'md',
     content: string
 }
-

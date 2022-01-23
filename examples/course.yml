@@ -1,0 +1,12 @@
+name: First lesson
+description: 'This is some sort of description. About the cours. ## Supports markdown?'
+
+topics:
+ - name: First topic
+   sections:
+    - type: video
+      url: https://bafybeiguiy2udlzyvxlrgbxn4s2qtbtd6p7iauc3zdib3peuk7ksvbxtea.ipfs.dweb.link/free_vid.mp4
+    - type: md
+      content: '# Hello there. <br />. This is gnarly.'
+    
+    

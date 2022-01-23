@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/Counter.svelte';
+	import Counter from '$lib/ui/Counter.svelte';
 </script>
 
 <svelte:head>
@@ -19,11 +19,11 @@
 			</picture>
 		</div>
 
-		to your new<br />SvelteKit appsdfa
+		to DECO
 	</h1>
 
 	<h2>
-		try editing <strong>src/routes/index.svelte</strong>
+		your home for DEcentralized COurses.
 	</h2>
 
 	<Counter />
