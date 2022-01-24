@@ -55,14 +55,14 @@
 <style>
 	.page-wrap {
 		width: 95vw;
-		max-width: 1400px;
+		max-width: 1000px;
 		position: relative;
 		margin: auto;
 	}
 
 	.topic-wrap {
 		margin: auto;
-		width: calc(100% - 400px);
+		width: 100%
 	}
 
 	/* .contents {

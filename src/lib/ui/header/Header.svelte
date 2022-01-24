@@ -1,35 +1,44 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import logo from './svelte-logo.svg';
+
+	import { mdiAccount } from '@mdi/js';
+
+	let searchInput = '';
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<a sveltekit:prefetch href="/">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
 
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="search-border">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
-		<ul>
-			<li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
-			<li class:active={$page.url.pathname === '/about'}>
-				<a sveltekit:prefetch href="/about">About</a>
-			</li>
-			<li class:active={$page.url.pathname === '/todos'}>
-				<a sveltekit:prefetch href="/todos">Todos</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<form action={'/course/' + searchInput} method="GET">
+			<!-- <i><svg><path d={mdiMagnify} fill="currentColor"/></svg></i> -->
+			<input
+				type="text"
+				name="text"
+				class="search"
+				placeholder="Search contract (0xABC123...)"
+				minlength="10"
+				bind:value={searchInput}
+			/>
+		</form>
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="search-border">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
 	</nav>
 
 	<div class="corner">
-		<!-- TODO put something else here? github link? -->
+		<div class="profile-icon">
+			<svg viewBox="3 3 18 18">
+				<path d={mdiAccount} fill="currrentColor" />
+			</svg>
+		</div>
 	</div>
 </header>
 
@@ -44,7 +53,8 @@
 		height: 3em;
 	}
 
-	.corner a {
+	.corner a,
+	.profile-icon {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -52,7 +62,15 @@
 		height: 100%;
 	}
 
-	.corner img {
+	.profile-icon {
+		cursor: pointer;
+	}
+
+	.profile-icon svg:hover {
+		opacity: 0.8;
+	}
+
+	.corner img, svg {
 		width: 2em;
 		height: 2em;
 		object-fit: contain;
@@ -64,58 +82,28 @@
 		--background: rgba(255, 255, 255, 0.7);
 	}
 
-	svg {
+	form {
+		background-color: var(--background);
+		height: 100%;
+		display: grid;
+		width: 50vw;
+		max-width: 500px;
+		place-items: ceneter;
+	}
+
+	.search-border {
 		width: 2em;
 		height: 3em;
 		display: block;
 	}
 
+	input {
+		background-color: rgba(0, 0, 0, 0);
+		border: none;
+	}
+
 	path {
 		fill: var(--background);
-	}
-
-	ul {
-		position: relative;
-		padding: 0;
-		margin: 0;
-		height: 3em;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		background: var(--background);
-		background-size: contain;
-	}
-
-	li {
-		position: relative;
-		height: 100%;
-	}
-
-	li.active::before {
-		--size: 6px;
-		content: '';
-		width: 0;
-		height: 0;
-		position: absolute;
-		top: 0;
-		left: calc(50% - var(--size));
-		border: var(--size) solid transparent;
-		border-top: var(--size) solid var(--accent-color);
-	}
-
-	nav a {
-		display: flex;
-		height: 100%;
-		align-items: center;
-		padding: 0 1em;
-		color: var(--heading-color);
-		font-weight: 700;
-		font-size: 0.8rem;
-		text-transform: uppercase;
-		letter-spacing: 0.1em;
-		text-decoration: none;
-		transition: color 0.2s linear;
 	}
 
 	a:hover {

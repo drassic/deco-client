@@ -3,7 +3,6 @@
 </script>
 
 <script lang="ts">
-	import Counter from '$lib/ui/Counter.svelte';
 </script>
 
 <svelte:head>
@@ -25,8 +24,6 @@
 	<h2>
 		your home for DEcentralized COurses.
 	</h2>
-
-	<Counter />
 </section>
 
 <style>
