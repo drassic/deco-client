@@ -2,8 +2,17 @@
 	import logo from './svelte-logo.svg';
 
 	import { mdiAccount } from '@mdi/js';
+	import Dropdown from '../profile/Dropdown.svelte';
+	import { onMount } from 'svelte';
+	import OnBoarding from '@metamask/onboarding'
+import { userStore } from '$lib/stores/userStore';
 
 	let searchInput = '';
+	let showProfileDropDown = false;
+
+	onMount(() => {
+		userStore.initialize();
+	});
 </script>
 
 <header>
@@ -35,10 +44,19 @@
 
 	<div class="corner">
 		<div class="profile-icon">
-			<svg viewBox="3 3 18 18">
+			<svg
+				viewBox="3 3 18 18"
+				tabindex="-1"
+				on:click={() => (showProfileDropDown = !showProfileDropDown)}
+			>
 				<path d={mdiAccount} fill="currrentColor" />
 			</svg>
 		</div>
+		{#if showProfileDropDown}
+			<div class="dropdown-wrap">
+				<Dropdown on:close={() => (showProfileDropDown = false)} />
+			</div>
+		{/if}
 	</div>
 </header>
 
@@ -51,6 +69,14 @@
 	.corner {
 		width: 3em;
 		height: 3em;
+		position: relative;
+	}
+
+	.dropdown-wrap {
+		position: absolute;
+		right: 0em;
+		top: 3em;
+		z-index: 10;
 	}
 
 	.corner a,
@@ -70,7 +96,8 @@
 		opacity: 0.8;
 	}
 
-	.corner img, svg {
+	.corner img,
+	svg {
 		width: 2em;
 		height: 2em;
 		object-fit: contain;
