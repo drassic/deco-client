@@ -3,16 +3,15 @@
 
 	import { mdiAccount } from '@mdi/js';
 	import Dropdown from '../profile/Dropdown.svelte';
-	import { onMount } from 'svelte';
-	import OnBoarding from '@metamask/onboarding'
-import { userStore } from '$lib/stores/userStore';
+	import { goto } from '$app/navigation';
 
 	let searchInput = '';
 	let showProfileDropDown = false;
 
-	onMount(() => {
-		userStore.initialize();
-	});
+	function handleSearchInput() {
+		goto('/course/' + searchInput);
+		searchInput = '';
+	}
 </script>
 
 <header>
@@ -26,7 +25,7 @@ import { userStore } from '$lib/stores/userStore';
 		<svg viewBox="0 0 2 3" aria-hidden="true" class="search-border">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
-		<form action={'/course/' + searchInput} method="GET">
+		<form on:submit|preventDefault={handleSearchInput}>
 			<!-- <i><svg><path d={mdiMagnify} fill="currentColor"/></svg></i> -->
 			<input
 				type="text"

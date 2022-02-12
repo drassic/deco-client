@@ -4,8 +4,6 @@
 	export let topic;
 </script>
 
-<h1>{topic.name}</h1>
-
 <div class="content">
 	{#if topic.sections}
 		{#each topic.sections as section}

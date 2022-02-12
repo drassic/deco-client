@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { clickOutside } from '$lib/scripts/clickOutslide';
+	import { clickOutside } from '$lib/helpers/utils';
 	import { userStore } from '$lib/stores/userStore';
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
@@ -25,7 +25,7 @@
 		</ul>
 	{:else}
 		<ul>
-			<li on:click={() => user.installMetaMask()}>Add Metamask</li>
+			<li on:click={user.installMetaMask}>Install Metamask</li>
 		</ul>
 	{/if}
 </div>
